@@ -37,7 +37,7 @@
 
         console.log(formDataObj)
 
-        parent.postMessage({pluginMessage: {type:'actionStart'}}, '*')
+        parent.postMessage({pluginMessage: {type:'start', formDataObj}}, '*')
     }
     document.getElementById('cancel').onclick = (event) => {
         parent.postMessage({pluginMessage: {type:'exit'}}, '*')
