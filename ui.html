@@ -1,6 +1,46 @@
 <h1>Color Generator</h1>
 
-<form>
+<form id="form">
+    <fieldset>
+        <p>
+            <label for="colorValue">Color</label>
+        <input type="color" id="colorValue" name="colorValue" value="#F85124">
+        </p>
+        <p>
+            <label for="colorLabel">Color Name</label>
+        <input type="text" id="colorLabel" name="colorLabel" value="Primary">
+        </p>
+        <p>
+            <label for="number">Number</label>
+        <input type="number" min="1'" max="10" id="number" name="number" value="10">
+        </p>
+    </fieldset>
+
+    <button id="generate">Generate Colors</button>
+    <button id="cancel">Cancel</button>
 
 
 </form>
+
+
+<script>
+    document.getElementById('generate').onclick = (event) => {
+        let form = document.querySelector("#form");
+        let formData = new FormData(form);
+
+        
+        // form data object
+        let formDataObj = {}
+        for(let [key, value] of formData){
+            formDataObj[key] = value;
+        }
+
+        console.log(formDataObj)
+
+        parent.postMessage({pluginMessage: {type:'actionStart'}}, '*')
+    }
+    document.getElementById('cancel').onclick = (event) => {
+        parent.postMessage({pluginMessage: {type:'exit'}}, '*')
+    }
+
+</script>
